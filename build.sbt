@@ -1,3 +1,5 @@
+import org.scalajs.linker.interface.ModuleSplitStyle
+
 ThisBuild / scalaVersion := ScalaVersions.v213
 ThisBuild / crossScalaVersions := Seq(
   ScalaVersions.v213,
@@ -259,8 +261,9 @@ lazy val website = project
   .settings(basicSettings)
   .settings(noPublish)
   .settings(
-    scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
-    scalaJSLinkerConfig ~= { _.withESFeatures(_.withUseECMAScript2015(false)) },
+    scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.ESModule) },
+    scalaJSLinkerConfig ~= { _.withModuleSplitStyle(ModuleSplitStyle.FewestModules) },
+//    scalaJSLinkerConfig ~= { _.withESFeatures(_.withUseECMAScript2015(false)) },
     Compile / scalaJSLinkerConfig ~= { _.withSourceMap(false) },
     scalaJSUseMainModuleInitializer := true,
     //    scalaJSLinkerConfig ~= (_.withModuleSplitStyle(org.scalajs.linker.interface.ModuleSplitStyle.FewestModules)),

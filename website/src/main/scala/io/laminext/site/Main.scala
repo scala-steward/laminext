@@ -11,6 +11,13 @@ import io.laminext.tailwind.theme.DefaultTheme
 import io.laminext.tailwind.theme.Theme
 import org.scalajs.dom
 
+import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
+
+@js.native
+@JSImport("stylesheets/main.css", JSImport.Namespace)
+object MainCss extends js.Any
+
 object Main {
 
   val mainCss: MainCss.type = MainCss
@@ -23,9 +30,9 @@ object Main {
       val wiring = Wiring()
       removeNoJsClass(wiring.ssrContext)
       insertJsClass(wiring.ssrContext)
-      Highlight.registerLanguage("scala", HighlightScala)
-      Highlight.registerLanguage("javascript", HighlightJavaScript)
-      Highlight.registerLanguage("json", HighlightJson)
+//      Highlight.registerLanguage("scala", HighlightScala)
+//      Highlight.registerLanguage("javascript", HighlightJavaScript)
+//      Highlight.registerLanguage("json", HighlightJson)
       wiring.routes.start()
     }(unsafeWindowOwner)
   }
